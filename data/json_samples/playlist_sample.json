@@ -1,0 +1,814 @@
+{
+    "collaborative": false,
+    "description": "",
+    "external_urls": {
+      "spotify": "https://open.spotify.com/playlist/07FkFHyg8v988gvxsYuSMD"
+    },
+    "followers": {
+      "href": null,
+      "total": 0
+    },
+    "href": "https://api.spotify.com/v1/playlists/07FkFHyg8v988gvxsYuSMD",
+    "id": "07FkFHyg8v988gvxsYuSMD",
+    "images": [
+      {
+        "height": 640,
+        "url": "https://i.scdn.co/image/ab67616d0000b273bcbec7d1bae62a13b14de1e5",
+        "width": 640
+      }
+    ],
+    "name": "altj",
+    "owner": {
+      "display_name": "Tom Jones",
+      "external_urls": {
+        "spotify": "https://open.spotify.com/user/clyde.frog"
+      },
+      "href": "https://api.spotify.com/v1/users/clyde.frog",
+      "id": "clyde.frog",
+      "type": "user",
+      "uri": "spotify:user:clyde.frog"
+    },
+    "primary_color": null,
+    "public": true,
+    "snapshot_id": "MyxlMDkzMjhlZWZmODQ4OTRmNDQ3NTVmYjM4MDRiOGFjNWVkYzNhYWMz",
+    "tracks": {
+      "href": "https://api.spotify.com/v1/playlists/07FkFHyg8v988gvxsYuSMD/tracks?offset=0&limit=100&locale=en-GB,en;q=0.5",
+      "items": [
+        {
+          "added_at": "2017-01-28T22:27:49Z",
+          "added_by": {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/clyde.frog"
+            },
+            "href": "https://api.spotify.com/v1/users/clyde.frog",
+            "id": "clyde.frog",
+            "type": "user",
+            "uri": "spotify:user:clyde.frog"
+          },
+          "is_local": false,
+          "primary_color": null,
+          "track": {
+            "album": {
+              "album_type": "album",
+              "artists": [
+                {
+                  "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+                  },
+                  "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+                  "id": "3XHO7cRUPCLOr6jwp8vsx5",
+                  "name": "alt-J",
+                  "type": "artist",
+                  "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+                }
+              ],
+              "available_markets": [],
+              "external_urls": {
+                "spotify": "https://open.spotify.com/album/7HOzvP7Ta2lLueojdlJtdZ"
+              },
+              "href": "https://api.spotify.com/v1/albums/7HOzvP7Ta2lLueojdlJtdZ",
+              "id": "7HOzvP7Ta2lLueojdlJtdZ",
+              "images": [
+                {
+                  "height": 640,
+                  "url": "https://i.scdn.co/image/ab67616d0000b273d381b6e0d9ffb31c47080079",
+                  "width": 640
+                },
+                {
+                  "height": 300,
+                  "url": "https://i.scdn.co/image/ab67616d00001e02d381b6e0d9ffb31c47080079",
+                  "width": 300
+                },
+                {
+                  "height": 64,
+                  "url": "https://i.scdn.co/image/ab67616d00004851d381b6e0d9ffb31c47080079",
+                  "width": 64
+                }
+              ],
+              "name": "An Awesome Wave",
+              "release_date": "2012-05-28",
+              "release_date_precision": "day",
+              "total_tracks": 14,
+              "type": "album",
+              "uri": "spotify:album:7HOzvP7Ta2lLueojdlJtdZ"
+            },
+            "artists": [
+              {
+                "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+                },
+                "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+                "id": "3XHO7cRUPCLOr6jwp8vsx5",
+                "name": "alt-J",
+                "type": "artist",
+                "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+              }
+            ],
+            "available_markets": [],
+            "disc_number": 1,
+            "duration_ms": 227080,
+            "episode": false,
+            "explicit": false,
+            "external_ids": {
+              "isrc": "GBZUZ1200067"
+            },
+            "external_urls": {
+              "spotify": "https://open.spotify.com/track/7gARZ2i5u5DHC1b1n1fML5"
+            },
+            "href": "https://api.spotify.com/v1/tracks/7gARZ2i5u5DHC1b1n1fML5",
+            "id": "7gARZ2i5u5DHC1b1n1fML5",
+            "is_local": false,
+            "name": "Breezeblocks",
+            "popularity": 0,
+            "preview_url": null,
+            "track": true,
+            "track_number": 4,
+            "type": "track",
+            "uri": "spotify:track:7gARZ2i5u5DHC1b1n1fML5"
+          },
+          "video_thumbnail": {
+            "url": null
+          }
+        },
+        {
+          "added_at": "2017-01-28T22:27:49Z",
+          "added_by": {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/clyde.frog"
+            },
+            "href": "https://api.spotify.com/v1/users/clyde.frog",
+            "id": "clyde.frog",
+            "type": "user",
+            "uri": "spotify:user:clyde.frog"
+          },
+          "is_local": false,
+          "primary_color": null,
+          "track": {
+            "album": {
+              "album_type": "album",
+              "artists": [
+                {
+                  "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+                  },
+                  "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+                  "id": "3XHO7cRUPCLOr6jwp8vsx5",
+                  "name": "alt-J",
+                  "type": "artist",
+                  "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+                }
+              ],
+              "available_markets": [],
+              "external_urls": {
+                "spotify": "https://open.spotify.com/album/6TbkWAqqY4nhQnYim61IU8"
+              },
+              "href": "https://api.spotify.com/v1/albums/6TbkWAqqY4nhQnYim61IU8",
+              "id": "6TbkWAqqY4nhQnYim61IU8",
+              "images": [
+                {
+                  "height": 640,
+                  "url": "https://i.scdn.co/image/ab67616d0000b27357e8362b39b7b3a85822303d",
+                  "width": 640
+                },
+                {
+                  "height": 300,
+                  "url": "https://i.scdn.co/image/ab67616d00001e0257e8362b39b7b3a85822303d",
+                  "width": 300
+                },
+                {
+                  "height": 64,
+                  "url": "https://i.scdn.co/image/ab67616d0000485157e8362b39b7b3a85822303d",
+                  "width": 64
+                }
+              ],
+              "name": "This Is All Yours",
+              "release_date": "2014-09-22",
+              "release_date_precision": "day",
+              "total_tracks": 14,
+              "type": "album",
+              "uri": "spotify:album:6TbkWAqqY4nhQnYim61IU8"
+            },
+            "artists": [
+              {
+                "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+                },
+                "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+                "id": "3XHO7cRUPCLOr6jwp8vsx5",
+                "name": "alt-J",
+                "type": "artist",
+                "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+              }
+            ],
+            "available_markets": [],
+            "disc_number": 1,
+            "duration_ms": 173630,
+            "episode": false,
+            "explicit": false,
+            "external_ids": {
+              "isrc": "GBZUZ1400272"
+            },
+            "external_urls": {
+              "spotify": "https://open.spotify.com/track/126TblwXGNTUZ7RPMnThkU"
+            },
+            "href": "https://api.spotify.com/v1/tracks/126TblwXGNTUZ7RPMnThkU",
+            "id": "126TblwXGNTUZ7RPMnThkU",
+            "is_local": false,
+            "name": "Left Hand Free",
+            "popularity": 0,
+            "preview_url": null,
+            "track": true,
+            "track_number": 5,
+            "type": "track",
+            "uri": "spotify:track:126TblwXGNTUZ7RPMnThkU"
+          },
+          "video_thumbnail": {
+            "url": null
+          }
+        },
+        {
+          "added_at": "2017-01-28T22:27:49Z",
+          "added_by": {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/clyde.frog"
+            },
+            "href": "https://api.spotify.com/v1/users/clyde.frog",
+            "id": "clyde.frog",
+            "type": "user",
+            "uri": "spotify:user:clyde.frog"
+          },
+          "is_local": false,
+          "primary_color": null,
+          "track": {
+            "album": {
+              "album_type": "album",
+              "artists": [
+                {
+                  "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+                  },
+                  "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+                  "id": "3XHO7cRUPCLOr6jwp8vsx5",
+                  "name": "alt-J",
+                  "type": "artist",
+                  "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+                }
+              ],
+              "available_markets": [],
+              "external_urls": {
+                "spotify": "https://open.spotify.com/album/7HOzvP7Ta2lLueojdlJtdZ"
+              },
+              "href": "https://api.spotify.com/v1/albums/7HOzvP7Ta2lLueojdlJtdZ",
+              "id": "7HOzvP7Ta2lLueojdlJtdZ",
+              "images": [
+                {
+                  "height": 640,
+                  "url": "https://i.scdn.co/image/ab67616d0000b273d381b6e0d9ffb31c47080079",
+                  "width": 640
+                },
+                {
+                  "height": 300,
+                  "url": "https://i.scdn.co/image/ab67616d00001e02d381b6e0d9ffb31c47080079",
+                  "width": 300
+                },
+                {
+                  "height": 64,
+                  "url": "https://i.scdn.co/image/ab67616d00004851d381b6e0d9ffb31c47080079",
+                  "width": 64
+                }
+              ],
+              "name": "An Awesome Wave",
+              "release_date": "2012-05-28",
+              "release_date_precision": "day",
+              "total_tracks": 14,
+              "type": "album",
+              "uri": "spotify:album:7HOzvP7Ta2lLueojdlJtdZ"
+            },
+            "artists": [
+              {
+                "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+                },
+                "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+                "id": "3XHO7cRUPCLOr6jwp8vsx5",
+                "name": "alt-J",
+                "type": "artist",
+                "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+              }
+            ],
+            "available_markets": [],
+            "disc_number": 1,
+            "duration_ms": 182666,
+            "episode": false,
+            "explicit": false,
+            "external_ids": {
+              "isrc": "GBZUZ1200066"
+            },
+            "external_urls": {
+              "spotify": "https://open.spotify.com/track/1EbacZvcixTCTzBcJfaua2"
+            },
+            "href": "https://api.spotify.com/v1/tracks/1EbacZvcixTCTzBcJfaua2",
+            "id": "1EbacZvcixTCTzBcJfaua2",
+            "is_local": false,
+            "name": "Tessellate",
+            "popularity": 0,
+            "preview_url": null,
+            "track": true,
+            "track_number": 3,
+            "type": "track",
+            "uri": "spotify:track:1EbacZvcixTCTzBcJfaua2"
+          },
+          "video_thumbnail": {
+            "url": null
+          }
+        },
+        {
+          "added_at": "2017-01-28T22:27:49Z",
+          "added_by": {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/clyde.frog"
+            },
+            "href": "https://api.spotify.com/v1/users/clyde.frog",
+            "id": "clyde.frog",
+            "type": "user",
+            "uri": "spotify:user:clyde.frog"
+          },
+          "is_local": false,
+          "primary_color": null,
+          "track": {
+            "album": {
+              "album_type": "album",
+              "artists": [
+                {
+                  "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+                  },
+                  "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+                  "id": "3XHO7cRUPCLOr6jwp8vsx5",
+                  "name": "alt-J",
+                  "type": "artist",
+                  "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+                }
+              ],
+              "available_markets": [],
+              "external_urls": {
+                "spotify": "https://open.spotify.com/album/6TbkWAqqY4nhQnYim61IU8"
+              },
+              "href": "https://api.spotify.com/v1/albums/6TbkWAqqY4nhQnYim61IU8",
+              "id": "6TbkWAqqY4nhQnYim61IU8",
+              "images": [
+                {
+                  "height": 640,
+                  "url": "https://i.scdn.co/image/ab67616d0000b27357e8362b39b7b3a85822303d",
+                  "width": 640
+                },
+                {
+                  "height": 300,
+                  "url": "https://i.scdn.co/image/ab67616d00001e0257e8362b39b7b3a85822303d",
+                  "width": 300
+                },
+                {
+                  "height": 64,
+                  "url": "https://i.scdn.co/image/ab67616d0000485157e8362b39b7b3a85822303d",
+                  "width": 64
+                }
+              ],
+              "name": "This Is All Yours",
+              "release_date": "2014-09-22",
+              "release_date_precision": "day",
+              "total_tracks": 14,
+              "type": "album",
+              "uri": "spotify:album:6TbkWAqqY4nhQnYim61IU8"
+            },
+            "artists": [
+              {
+                "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+                },
+                "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+                "id": "3XHO7cRUPCLOr6jwp8vsx5",
+                "name": "alt-J",
+                "type": "artist",
+                "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+              }
+            ],
+            "available_markets": [],
+            "disc_number": 1,
+            "duration_ms": 216004,
+            "episode": false,
+            "explicit": false,
+            "external_ids": {
+              "isrc": "GBZUZ1400276"
+            },
+            "external_urls": {
+              "spotify": "https://open.spotify.com/track/0HV1cGoX5ASBlPA1pqH8fG"
+            },
+            "href": "https://api.spotify.com/v1/tracks/0HV1cGoX5ASBlPA1pqH8fG",
+            "id": "0HV1cGoX5ASBlPA1pqH8fG",
+            "is_local": false,
+            "name": "Every Other Freckle",
+            "popularity": 0,
+            "preview_url": null,
+            "track": true,
+            "track_number": 4,
+            "type": "track",
+            "uri": "spotify:track:0HV1cGoX5ASBlPA1pqH8fG"
+          },
+          "video_thumbnail": {
+            "url": null
+          }
+        },
+        {
+          "added_at": "2017-01-28T22:27:49Z",
+          "added_by": {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/clyde.frog"
+            },
+            "href": "https://api.spotify.com/v1/users/clyde.frog",
+            "id": "clyde.frog",
+            "type": "user",
+            "uri": "spotify:user:clyde.frog"
+          },
+          "is_local": false,
+          "primary_color": null,
+          "track": {
+            "album": {
+              "album_type": "album",
+              "artists": [
+                {
+                  "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+                  },
+                  "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+                  "id": "3XHO7cRUPCLOr6jwp8vsx5",
+                  "name": "alt-J",
+                  "type": "artist",
+                  "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+                }
+              ],
+              "available_markets": [],
+              "external_urls": {
+                "spotify": "https://open.spotify.com/album/719I4grSudmVzZdmzClX6W"
+              },
+              "href": "https://api.spotify.com/v1/albums/719I4grSudmVzZdmzClX6W",
+              "id": "719I4grSudmVzZdmzClX6W",
+              "images": [
+                {
+                  "height": 640,
+                  "url": "https://i.scdn.co/image/ab67616d0000b273722d87daf64c26bd3e5bff65",
+                  "width": 640
+                },
+                {
+                  "height": 300,
+                  "url": "https://i.scdn.co/image/ab67616d00001e02722d87daf64c26bd3e5bff65",
+                  "width": 300
+                },
+                {
+                  "height": 64,
+                  "url": "https://i.scdn.co/image/ab67616d00004851722d87daf64c26bd3e5bff65",
+                  "width": 64
+                }
+              ],
+              "name": "An Awesome Wave (Deluxe Version)",
+              "release_date": "2012-10-22",
+              "release_date_precision": "day",
+              "total_tracks": 25,
+              "type": "album",
+              "uri": "spotify:album:719I4grSudmVzZdmzClX6W"
+            },
+            "artists": [
+              {
+                "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+                },
+                "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+                "id": "3XHO7cRUPCLOr6jwp8vsx5",
+                "name": "alt-J",
+                "type": "artist",
+                "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+              }
+            ],
+            "available_markets": [],
+            "disc_number": 1,
+            "duration_ms": 219386,
+            "episode": false,
+            "explicit": false,
+            "external_ids": {
+              "isrc": "GBZUZ1100059"
+            },
+            "external_urls": {
+              "spotify": "https://open.spotify.com/track/6gP9gjBR6KQ4T2pw9CLtkj"
+            },
+            "href": "https://api.spotify.com/v1/tracks/6gP9gjBR6KQ4T2pw9CLtkj",
+            "id": "6gP9gjBR6KQ4T2pw9CLtkj",
+            "is_local": false,
+            "name": "Fitzpleasure",
+            "popularity": 0,
+            "preview_url": null,
+            "track": true,
+            "track_number": 10,
+            "type": "track",
+            "uri": "spotify:track:6gP9gjBR6KQ4T2pw9CLtkj"
+          },
+          "video_thumbnail": {
+            "url": null
+          }
+        },
+        {
+          "added_at": "2017-01-28T22:27:49Z",
+          "added_by": {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/clyde.frog"
+            },
+            "href": "https://api.spotify.com/v1/users/clyde.frog",
+            "id": "clyde.frog",
+            "type": "user",
+            "uri": "spotify:user:clyde.frog"
+          },
+          "is_local": false,
+          "primary_color": null,
+          "track": {
+            "album": {
+              "album_type": "album",
+              "artists": [
+                {
+                  "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+                  },
+                  "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+                  "id": "3XHO7cRUPCLOr6jwp8vsx5",
+                  "name": "alt-J",
+                  "type": "artist",
+                  "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+                }
+              ],
+              "available_markets": [],
+              "external_urls": {
+                "spotify": "https://open.spotify.com/album/6TbkWAqqY4nhQnYim61IU8"
+              },
+              "href": "https://api.spotify.com/v1/albums/6TbkWAqqY4nhQnYim61IU8",
+              "id": "6TbkWAqqY4nhQnYim61IU8",
+              "images": [
+                {
+                  "height": 640,
+                  "url": "https://i.scdn.co/image/ab67616d0000b27357e8362b39b7b3a85822303d",
+                  "width": 640
+                },
+                {
+                  "height": 300,
+                  "url": "https://i.scdn.co/image/ab67616d00001e0257e8362b39b7b3a85822303d",
+                  "width": 300
+                },
+                {
+                  "height": 64,
+                  "url": "https://i.scdn.co/image/ab67616d0000485157e8362b39b7b3a85822303d",
+                  "width": 64
+                }
+              ],
+              "name": "This Is All Yours",
+              "release_date": "2014-09-22",
+              "release_date_precision": "day",
+              "total_tracks": 14,
+              "type": "album",
+              "uri": "spotify:album:6TbkWAqqY4nhQnYim61IU8"
+            },
+            "artists": [
+              {
+                "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+                },
+                "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+                "id": "3XHO7cRUPCLOr6jwp8vsx5",
+                "name": "alt-J",
+                "type": "artist",
+                "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+              }
+            ],
+            "available_markets": [],
+            "disc_number": 1,
+            "duration_ms": 299710,
+            "episode": false,
+            "explicit": false,
+            "external_ids": {
+              "isrc": "GBZUZ1400267"
+            },
+            "external_urls": {
+              "spotify": "https://open.spotify.com/track/3Z0YN50RzRtmYre1bRG8H6"
+            },
+            "href": "https://api.spotify.com/v1/tracks/3Z0YN50RzRtmYre1bRG8H6",
+            "id": "3Z0YN50RzRtmYre1bRG8H6",
+            "is_local": false,
+            "name": "Hunger Of The Pine",
+            "popularity": 0,
+            "preview_url": null,
+            "track": true,
+            "track_number": 8,
+            "type": "track",
+            "uri": "spotify:track:3Z0YN50RzRtmYre1bRG8H6"
+          },
+          "video_thumbnail": {
+            "url": null
+          }
+        },
+        {
+          "added_at": "2017-01-28T22:27:49Z",
+          "added_by": {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/clyde.frog"
+            },
+            "href": "https://api.spotify.com/v1/users/clyde.frog",
+            "id": "clyde.frog",
+            "type": "user",
+            "uri": "spotify:user:clyde.frog"
+          },
+          "is_local": false,
+          "primary_color": null,
+          "track": {
+            "album": {
+              "album_type": "album",
+              "artists": [
+                {
+                  "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+                  },
+                  "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+                  "id": "3XHO7cRUPCLOr6jwp8vsx5",
+                  "name": "alt-J",
+                  "type": "artist",
+                  "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+                }
+              ],
+              "available_markets": [],
+              "external_urls": {
+                "spotify": "https://open.spotify.com/album/719I4grSudmVzZdmzClX6W"
+              },
+              "href": "https://api.spotify.com/v1/albums/719I4grSudmVzZdmzClX6W",
+              "id": "719I4grSudmVzZdmzClX6W",
+              "images": [
+                {
+                  "height": 640,
+                  "url": "https://i.scdn.co/image/ab67616d0000b273722d87daf64c26bd3e5bff65",
+                  "width": 640
+                },
+                {
+                  "height": 300,
+                  "url": "https://i.scdn.co/image/ab67616d00001e02722d87daf64c26bd3e5bff65",
+                  "width": 300
+                },
+                {
+                  "height": 64,
+                  "url": "https://i.scdn.co/image/ab67616d00004851722d87daf64c26bd3e5bff65",
+                  "width": 64
+                }
+              ],
+              "name": "An Awesome Wave (Deluxe Version)",
+              "release_date": "2012-10-22",
+              "release_date_precision": "day",
+              "total_tracks": 25,
+              "type": "album",
+              "uri": "spotify:album:719I4grSudmVzZdmzClX6W"
+            },
+            "artists": [
+              {
+                "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+                },
+                "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+                "id": "3XHO7cRUPCLOr6jwp8vsx5",
+                "name": "alt-J",
+                "type": "artist",
+                "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+              }
+            ],
+            "available_markets": [],
+            "disc_number": 1,
+            "duration_ms": 305106,
+            "episode": false,
+            "explicit": false,
+            "external_ids": {
+              "isrc": "GBZUZ1200037"
+            },
+            "external_urls": {
+              "spotify": "https://open.spotify.com/track/4e8KvQ6kLYr4ZnmZyNLwJO"
+            },
+            "href": "https://api.spotify.com/v1/tracks/4e8KvQ6kLYr4ZnmZyNLwJO",
+            "id": "4e8KvQ6kLYr4ZnmZyNLwJO",
+            "is_local": false,
+            "name": "Taro",
+            "popularity": 0,
+            "preview_url": null,
+            "track": true,
+            "track_number": 13,
+            "type": "track",
+            "uri": "spotify:track:4e8KvQ6kLYr4ZnmZyNLwJO"
+          },
+          "video_thumbnail": {
+            "url": null
+          }
+        },
+        {
+          "added_at": "2017-01-28T22:27:49Z",
+          "added_by": {
+            "external_urls": {
+              "spotify": "https://open.spotify.com/user/clyde.frog"
+            },
+            "href": "https://api.spotify.com/v1/users/clyde.frog",
+            "id": "clyde.frog",
+            "type": "user",
+            "uri": "spotify:user:clyde.frog"
+          },
+          "is_local": false,
+          "primary_color": null,
+          "track": {
+            "album": {
+              "album_type": "album",
+              "artists": [
+                {
+                  "external_urls": {
+                    "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+                  },
+                  "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+                  "id": "3XHO7cRUPCLOr6jwp8vsx5",
+                  "name": "alt-J",
+                  "type": "artist",
+                  "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+                }
+              ],
+              "available_markets": [],
+              "external_urls": {
+                "spotify": "https://open.spotify.com/album/7HOzvP7Ta2lLueojdlJtdZ"
+              },
+              "href": "https://api.spotify.com/v1/albums/7HOzvP7Ta2lLueojdlJtdZ",
+              "id": "7HOzvP7Ta2lLueojdlJtdZ",
+              "images": [
+                {
+                  "height": 640,
+                  "url": "https://i.scdn.co/image/ab67616d0000b273d381b6e0d9ffb31c47080079",
+                  "width": 640
+                },
+                {
+                  "height": 300,
+                  "url": "https://i.scdn.co/image/ab67616d00001e02d381b6e0d9ffb31c47080079",
+                  "width": 300
+                },
+                {
+                  "height": 64,
+                  "url": "https://i.scdn.co/image/ab67616d00004851d381b6e0d9ffb31c47080079",
+                  "width": 64
+                }
+              ],
+              "name": "An Awesome Wave",
+              "release_date": "2012-05-28",
+              "release_date_precision": "day",
+              "total_tracks": 14,
+              "type": "album",
+              "uri": "spotify:album:7HOzvP7Ta2lLueojdlJtdZ"
+            },
+            "artists": [
+              {
+                "external_urls": {
+                  "spotify": "https://open.spotify.com/artist/3XHO7cRUPCLOr6jwp8vsx5"
+                },
+                "href": "https://api.spotify.com/v1/artists/3XHO7cRUPCLOr6jwp8vsx5",
+                "id": "3XHO7cRUPCLOr6jwp8vsx5",
+                "name": "alt-J",
+                "type": "artist",
+                "uri": "spotify:artist:3XHO7cRUPCLOr6jwp8vsx5"
+              }
+            ],
+            "available_markets": [],
+            "disc_number": 1,
+            "duration_ms": 218240,
+            "episode": false,
+            "explicit": false,
+            "external_ids": {
+              "isrc": "GBZUZ1200069"
+            },
+            "external_urls": {
+              "spotify": "https://open.spotify.com/track/4JVSkSJAKbSlwkSepkXcK6"
+            },
+            "href": "https://api.spotify.com/v1/tracks/4JVSkSJAKbSlwkSepkXcK6",
+            "id": "4JVSkSJAKbSlwkSepkXcK6",
+            "is_local": false,
+            "name": "Something Good",
+            "popularity": 0,
+            "preview_url": null,
+            "track": true,
+            "track_number": 6,
+            "type": "track",
+            "uri": "spotify:track:4JVSkSJAKbSlwkSepkXcK6"
+          },
+          "video_thumbnail": {
+            "url": null
+          }
+        }
+      ],
+      "limit": 100,
+      "next": null,
+      "offset": 0,
+      "previous": null,
+      "total": 10
+    },
+    "type": "playlist",
+    "uri": "spotify:playlist:07FkFHyg8v988gvxsYuSMD"
+  }

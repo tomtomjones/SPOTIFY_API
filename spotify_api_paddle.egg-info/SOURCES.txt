@@ -1,0 +1,8 @@
+README.md
+setup.py
+spotify_api_paddle.egg-info/PKG-INFO
+spotify_api_paddle.egg-info/SOURCES.txt
+spotify_api_paddle.egg-info/dependency_links.txt
+spotify_api_paddle.egg-info/top_level.txt
+src/__init__.py
+src/main.py
