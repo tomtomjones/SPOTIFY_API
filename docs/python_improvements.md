@@ -17,8 +17,6 @@ Possible improvements to this project, and any further changes that could help g
 - Include a logging_config.py file for proper debugging and tracking of events. I simply used print() for debugging since this was a smaller project
 - in the documentation for limits, i read somewhere you can use snapshot_id to retrieve a 'cached/historical' playlist. this could help when the project is making a lot more API requests. Same for retrieving Album tracks, can send requests for tracks from multiple albums in one call. this wasn't required for this project scope
 
-## Additional Suggestions
-
 - Flask front end hosted locally to allow variable inputs like playlists returned limits and different categories. Would allow graphs and other basic BI tooling options. pandas and matplotlib
 - Separate test cases into smaller separate modules with relevent test names for better clarity. I think this is better practice than all in one module like i have
 - Implement a scheduling mechanism to automatically run the script on a daily basis, collecting stats on followers/playlist size and similar
