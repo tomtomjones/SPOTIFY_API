@@ -1,5 +1,3 @@
-Sure! Below is a brief README for your Spotify API project:
-
 # Spotify API Project
 
 This project is a Python application that interacts with the Spotify Web API to fetch information about playlists and tracks. Playlists are retrieved from a given category, limits can be set in the code. The project returns 6 datasets, extracted as csv.gz files. 

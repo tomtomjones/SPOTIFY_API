@@ -18,7 +18,7 @@ BEARER_TOKEN_HEADERS = {
     'Authorization': f"Bearer {ACCESS_TOKEN}"
 }
 
-playlist_limit = 5 # number of playlists to get from chosen category
+playlist_limit = 50 # number of playlists to get from chosen category
 playlist_category = "latin" # category of playlists to retrieve
 
 # Stores all playlist IDs retrieved from first category call
@@ -141,6 +141,7 @@ def main():
     ## compress and delete csv files
     compress_csv_file(DATA_DIR)
 
+    print("Done!")
 
 if __name__ == "__main__":
     main()

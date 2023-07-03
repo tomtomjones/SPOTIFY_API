@@ -1,6 +1,7 @@
 [base_config]
 SPOTIFY_API_URL = https://api.spotify.com/v1/
 DATA_DIR = data/
+TEST_DATA_DIR = tests/test_data/
 
 [API_KEYS]
 CLIENT_ID = <YOUR_CLIENT_ID>

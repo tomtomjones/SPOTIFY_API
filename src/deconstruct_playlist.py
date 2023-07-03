@@ -3,7 +3,6 @@ class PlaylistTracks:
         self.followers = Followers(json_data["followers"])
         self.id = json_data["id"]
         self.name = json_data["name"]
-        ##self.snapshot_id = json_data["snapshot_id"]
         self.tracks = Tracks(json_data["tracks"])
 
 class Followers:
@@ -28,7 +27,6 @@ class Track:
 class TrackData:
     def __init__(self, json_data):
         self.album = Album(json_data["album"])
-        # self.artists = [Artist(artist_data) for artist_data in json_data["artists"]]
         self.available_markets = json_data["available_markets"]
         self.disc_number = json_data["disc_number"]
         self.duration_ms = json_data["duration_ms"]
@@ -55,7 +53,6 @@ class Album:
         self.external_urls = json_data["external_urls"]
         self.href = json_data["href"]
         self.id = json_data["id"]
-        # self.images = [Image(image_data) for image_data in json_data["images"]]
         self.name = json_data["name"]
         self.release_date = json_data["release_date"]
         self.release_date_precision = json_data["release_date_precision"]
