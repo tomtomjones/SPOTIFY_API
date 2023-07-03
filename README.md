@@ -70,6 +70,7 @@ git clone https://github.com/tomtomjones/spotify_api.git
 # cd spotify_api
 python -m venv venv
 source venv/bin/activate  # On Windows, use `soruce venv\Scripts\activate`
+pip install -e . # not sure if this is required for other machines, but is required for config and my own modules created to work correctly
 ```
 
 3. Install the required dependencies:
