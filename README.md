@@ -6,7 +6,7 @@ My result dataset files are available under the data directory.
 - Playlist category can be set in the playlist_category variable in main.py.
 
 - My answers to the SQL challenge are stored in /docs, and the Python question 2 write up can be found here also.
-
+ 
 ## Project Structure
 
 The project follows what i believe to be a standard Python project structure:
