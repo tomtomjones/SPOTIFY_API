@@ -93,4 +93,71 @@ The architectural framework for extracting data from Teradata Vantage using GCP 
 The target state architecture for data extraction from Teradata Vantage involves:
 - Establishing a secure connection between GCP Composer and Teradata Vantage to retrieve data.
 - Implementing automated workflows for scheduling and orchestrating data extraction processes.
-- Integrating data validation and
+- Integrating data validation and error handling mechanisms to ensure data quality and integrity.
+- Leveraging cloud storage solutions for storing extracted data and facilitating downstream analytics and reporting.
+
+# Solution Components
+The solution components for data extraction from Teradata Vantage include:
+- GCP Composer: Orchestration tool for automating data extraction workflows.
+- Teradata Vantage Connector: Interface for establishing connectivity and retrieving data from Teradata Vantage.
+- Cloud Storage: Repository for storing extracted data in a scalable and cost-effective manner.
+
+# Interim State Architecture
+The interim state architecture assesses the current state of data extraction processes from Teradata Vantage and identifies areas for improvement, such as manual interventions, data latency issues, or scalability constraints.
+
+# Architecture Decisions
+Key architectural decisions include:
+- Selection of GCP Composer as the orchestration tool for automating data extraction workflows.
+- Integration of Teradata Vantage connectors to establish secure connections and retrieve data efficiently.
+- Implementation of cloud storage solutions for storing extracted data and enabling seamless integration with downstream analytics tools.
+
+# Technical Debt
+The technical debt associated with the current data extraction process from Teradata Vantage may include manual interventions, inefficient workflows, or legacy systems that hinder scalability and automation.
+
+# Infrastructure Architecture
+The infrastructure architecture for the data extraction project involves:
+- Provisioning cloud resources on Google Cloud Platform (GCP) to support the data extraction workflows.
+- Configuring network connectivity and access controls to ensure secure communication between GCP services and Teradata Vantage.
+- Optimizing resource allocation and scaling capabilities to accommodate varying workloads and data volumes.
+
+# Business Architecture
+The business context and scope of the data extraction project from Teradata Vantage include:
+- Identifying stakeholders and their roles in defining requirements, validating solutions, and overseeing implementation.
+- Aligning data extraction objectives with broader organizational goals and strategic initiatives to maximize business value and impact.
+
+# Application Architecture
+The application architecture for data extraction from Teradata Vantage includes:
+- Designing standardized services for data extraction, transformation, and loading (ETL) processes to ensure consistency and reliability.
+- Implementing content validation services to verify data accuracy, completeness, and compliance with business rules and requirements.
+
+# Data Architecture
+The data architecture encompasses:
+- Mapping the data landscape within Teradata Vantage, including data sources, structures, and relationships.
+- Establishing data governance principles and practices to maintain data quality, consistency, and integrity throughout the extraction process.
+- Defining data environments and access controls to ensure appropriate levels of data security and privacy.
+
+# Security Architecture
+The security architecture addresses:
+- Overview of security measures and controls implemented to protect data during extraction from Teradata Vantage.
+- Functional requirements for cloud security, including encryption, access controls, and identity management.
+- Patterns and standards for securing data, applications, and infrastructure in compliance with industry regulations and best practices.
+
+# Service Management
+Service management considerations include:
+- Introduction of data extraction services and change management processes to facilitate adoption and mitigate risks associated with implementation.
+- Clarification of roles and responsibilities for stakeholders involved in managing, monitoring, and supporting the data extraction workflows.
+- Implementation of monitoring and logging mechanisms to track workflow performance, detect anomalies, and troubleshoot issues proactively.
+
+# Architecture Alignment & RAID
+Alignment to architecture principles ensures consistency with:
+- Risks associated with the data extraction project, such as potential data breaches, compliance violations, or operational disruptions.
+- Assumptions made during the design and implementation phases, including assumptions about data volumes, system dependencies, and stakeholder expectations.
+- Data-related issues, dependencies, and constraints that may impact the success of the data extraction project.
+- Architectural exceptions and mitigations to address deviations from established design principles, standards, or best practices.
+- Opportunities for optimization, innovation, or value creation through the implementation of the data extraction solution.
+
+# Expected Costs
+Key factors influencing the expected costs of the data extraction project include:
+- Infrastructure requirements, including compute, storage, and network resources provisioned on GCP.
+- Licensing fees for Teradata Vantage usage and any additional software or services required for integration and automation.
+- Estimate of total project costs based on resource utilization, implementation timelines, and potential cost-saving measures.
