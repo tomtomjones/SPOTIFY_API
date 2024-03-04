@@ -161,3 +161,59 @@ Key factors influencing the expected costs of the data extraction project includ
 - Infrastructure requirements, including compute, storage, and network resources provisioned on GCP.
 - Licensing fees for Teradata Vantage usage and any additional software or services required for integration and automation.
 - Estimate of total project costs based on resource utilization, implementation timelines, and potential cost-saving measures.
+
+
+
+
+Sure, let's expand the diagram to provide more detail on the flow of the project:
+
+```
+                       +----------------------------------------+
+                       |              Teradata Vantage           |
+                       +----------------------------------------+
+                                      |
+                                      | Data Extraction
+                                      v
+                       +----------------------------------------+
+                       |               GCP Composer              |
+                       |     (Workflow Orchestration Service)   |
+                       +----------------------------------------+
+                                      |
+                    +-----------------+--------------------------+
+                    |                                            |
+                    v                                            v
+   +------------------------+                         +---------------------+
+   |   Data Extraction      |                         |   Data Transformation|
+   |   Task:               |                         |   Task:             |
+   |   - Establish secure  |                         |   - Validate and    |
+   |     connection to     |                         |     clean extracted |
+   |     Teradata Vantage  |                         |     data            |
+   |   - Retrieve data     |                         |   - Transform data  |
+   |     from Teradata     |                         |     to desired      |
+   |     Vantage           |                         |     format          |
+   +------------------------+                         +---------------------+
+                    |                                            |
+                    v                                            v
+   +--------------------------------+             +-----------------------------+
+   | Cloud Storage (GCS)            |             |     Data Analysis & Reporting |
+   | - Store extracted data         |             | - Analyze data for insights  |
+   | - Organize data in buckets     |             | - Generate reports           |
+   | - Manage access controls       |             | - Visualize data             |
+   +--------------------------------+             +-----------------------------+
+
+
+Explanation:
+
+1. **Teradata Vantage**: This is the source database where the data resides. The extraction process starts here.
+
+2. **GCP Composer**: Google Cloud Platform's managed workflow orchestration service. It coordinates the data extraction process. Tasks within GCP Composer include establishing a secure connection to Teradata Vantage, retrieving data, and triggering subsequent tasks.
+
+3. **Data Extraction Task**: This task within GCP Composer handles the actual extraction of data from Teradata Vantage. It involves establishing a secure connection, retrieving data, and storing it temporarily before further processing.
+
+4. **Data Transformation Task**: Another task within GCP Composer, responsible for transforming the extracted data into the desired format. This task may involve data validation, cleaning, and transformation to prepare it for analysis and reporting.
+
+5. **Cloud Storage (GCS)**: Google Cloud Storage serves as the destination for storing the extracted and transformed data. It provides scalable storage options and manages access controls to ensure data security.
+
+6. **Data Analysis & Reporting**: Downstream tasks that utilize the extracted and transformed data stored in Cloud Storage. This could involve analyzing the data for insights, generating reports, visualizing data, or performing any other analytics tasks as required by the project.
+
+This detailed diagram illustrates the end-to-end flow of the project, from data extraction to storage, transformation, and downstream analysis/reporting.
