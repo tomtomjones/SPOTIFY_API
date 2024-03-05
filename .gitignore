@@ -8,6 +8,216 @@ src/scratchpad.py
 
 
 
+
+
+# Table of Contents
+1. [Version History](#version-history)
+2. [Glossary](#glossary)
+3. [Required Approvers](#required-approvers)
+4. [Introduction](#introduction)
+5. [Purpose of this Document](#purpose-of-this-document)
+6. [Project Objectives](#project-objectives)
+   - 6.1 [Expected Value](#expected-value)
+7. [Project Scope](#project-scope)
+   - 7.1 [In Scope (Interim)](#in-scope-interim)
+   - 7.2 [In Scope (Target)](#in-scope-target)
+   - 7.3 [Out Of Scope](#out-of-scope)
+8. [Key Business Requirements](#key-business-requirements)
+   - 8.1 [Business Strategy & Benefits](#business-strategy--benefits)
+9. [Architectural Overview](#architectural-overview)
+   - 9.1 [Target State Architecture](#target-state-architecture)
+   - 9.2 [Solution Components](#solution-components)
+   - 9.3 [Interim State Architecture](#interim-state-architecture)
+   - 9.4 [Architecture Decisions](#architecture-decisions)
+   - 9.5 [Technical Debt](#technical-debt)
+10. [Infrastructure Architecture](#infrastructure-architecture)
+11. [Business Architecture](#business-architecture)
+12. [Application Architecture](#application-architecture)
+13. [Data Architecture](#data-architecture)
+14. [Security Architecture](#security-architecture)
+15. [Service Management](#service-management)
+16. [Architecture Alignment & RAID](#architecture-alignment--raid)
+17. [Expected Costs](#expected-costs)
+
+# Version History
+Version 1.0 - Initial Draft (March 4, 2024)
+
+# Glossary
+- Teradata Vantage: A cloud-based data analytics platform that integrates analytical capabilities with data management services, providing advanced analytics and machine learning capabilities.
+- Data Extraction: The process of retrieving data from Teradata Vantage for use in downstream analytics, reporting, or other business processes.
+- GCP Composer: Google Cloud Platform's managed workflow orchestration service, used to schedule and automate data extraction processes.
+- GCP SQL Operators: Google Cloud Composer allows the use of GCP SQL operators for executing SQL queries on various GCP services.
+
+# Required Approvers
+- Project Manager: Responsible for overseeing the implementation of the data extraction project and ensuring alignment with organizational objectives.
+- Data Architect: Responsible for designing the data extraction workflow and ensuring compatibility with Teradata Vantage, GCP Composer, and GCP SQL Operators.
+- IT Security Officer: Responsible for reviewing security measures and ensuring compliance with data protection policies during the extraction process.
+
+# Introduction
+The following document outlines the process of extracting data from Teradata Vantage using GCP Composer and GCP SQL Operators. This document serves as a comprehensive guide for stakeholders involved in the project, detailing the objectives, scope, architecture, and technical considerations for the data extraction process.
+
+# Purpose of this Document
+The purpose of this document is to provide a detailed overview of the data extraction project, specifically focusing on extracting data from Teradata Vantage using GCP Composer and GCP SQL Operators. It aims to clarify the project's goals, scope, and technical requirements to ensure successful implementation and alignment with organizational objectives.
+
+# Project Objectives
+The primary objective of the data extraction project is to establish a reliable and efficient process for extracting data from Teradata Vantage. This includes automating data extraction workflows, ensuring data accuracy and integrity, and improving data accessibility for downstream analytics and reporting purposes.
+
+## Expected Value
+The implementation of automated data extraction processes from Teradata Vantage using GCP Composer and GCP SQL Operators is expected to deliver several key benefits, including:
+- Improved efficiency and scalability of data extraction workflows.
+- Enhanced data quality and integrity through automated validation and error handling.
+- Increased accessibility of data for analytics and reporting, enabling faster decision-making and insights generation.
+
+# Project Scope
+The project scope includes:
+- In Scope (Interim): Designing and implementing automated data extraction workflows from Teradata Vantage using GCP Composer and GCP SQL Operators.
+- In Scope (Target): Ensuring data accuracy, integrity, and security throughout the extraction process.
+- Out Of Scope: Data analysis, reporting, or other downstream activities beyond the scope of data extraction.
+
+## In Scope (Interim)
+- Utilization of GCP Composer to orchestrate data extraction workflows.
+- Integration of GCP SQL Operators for executing SQL queries on Teradata Vantage and other GCP services.
+
+## In Scope (Target)
+- Implementation of data validation and error handling mechanisms to ensure data quality.
+- Implementation of security measures to safeguard sensitive information during extraction.
+
+## Out Of Scope
+- Data analysis, reporting, or other downstream activities beyond data extraction.
+
+# Key Business Requirements
+The business context driving the data extraction project from Teradata Vantage includes the need for:
+- Timely access to accurate and reliable data for analytics and reporting purposes.
+- Improved efficiency and automation of data extraction processes to reduce manual effort and errors.
+- Compliance with data protection regulations and security standards to safeguard sensitive information.
+
+## Business Strategy & Benefits
+The data extraction project aligns with the organization's strategic goals by:
+- Enhancing data-driven decision-making capabilities through timely access to accurate data.
+- Optimizing operational efficiency and resource utilization through automation and scalability.
+- Strengthening data governance and compliance measures to mitigate risks and ensure data security and privacy.
+
+# Architectural Overview
+The architectural framework for extracting data from Teradata Vantage using GCP Composer and GCP SQL Operators includes:
+- Target State Architecture: Designing automated workflows for data extraction and transformation.
+- Solution Components: Leveraging GCP Composer, GCP SQL Operators, Teradata Vantage connectors, and other necessary tools for seamless integration and execution.
+- Interim State Architecture: Assessing existing data extraction processes and identifying areas for improvement and optimization.
+
+## Target State Architecture
+The target state architecture for data extraction from Teradata Vantage involves:
+- Establishing a secure connection between GCP Composer and Teradata Vantage to retrieve data.
+- Implementing automated workflows for scheduling and orchestrating data extraction processes.
+- Leveraging GCP SQL Operators to execute SQL queries on Teradata Vantage and other GCP services.
+- Integrating data validation and error handling mechanisms to ensure data quality and integrity.
+
+## Solution Components
+The solution components for data extraction from Teradata Vantage include:
+- GCP Composer: Orchestration tool for automating data extraction workflows.
+- GCP SQL Operators: Operators for executing SQL queries on GCP services.
+- Teradata Vantage Connector: Interface for establishing connectivity and retrieving data from Teradata Vantage.
+- Cloud Storage: Repository for storing extracted data in a scalable and cost-effective manner.
+
+## Interim State Architecture
+The interim state architecture assesses the current state of data extraction processes from Teradata Vantage and identifies areas for improvement, such as manual interventions, data latency issues, or scalability constraints.
+
+## Architecture Decisions
+Key architectural decisions include:
+- Selection of GCP Composer and GCP SQL Operators for automating and executing data extraction workflows.
+- Integration of Teradata Vantage connectors to establish secure connections and retrieve data efficiently.
+- Implementation of cloud storage solutions for storing extracted data and enabling seamless integration with downstream analytics tools.
+
+## Technical Debt
+The technical debt associated with the current data extraction process from Teradata Vantage may include manual interventions, inefficient workflows, or legacy systems that hinder scalability and automation.
+
+# Infrastructure Architecture
+The infrastructure architecture for the data extraction project involves:
+- Provisioning cloud resources on Google Cloud Platform (GCP) to support the data extraction workflows.
+- Configuring network connectivity and access controls to ensure secure communication between GCP services and Teradata Vantage.
+- Optimizing resource allocation and scaling capabilities to accommodate varying workloads and data volumes.
+
+# Business Architecture
+The business context and scope of the data extraction project from Teradata Vantage include:
+- Identifying stakeholders and their roles in defining requirements, validating solutions, and overseeing implementation.
+- Aligning data extraction objectives with broader organizational goals and strategic initiatives to maximize business value and impact.
+
+# Application Architecture
+The application architecture for data extraction from Teradata Vantage includes:
+- Designing standardized services for data extraction, transformation, and loading (ETL) processes to ensure consistency and reliability.
+- Implementing content validation services to verify data accuracy, completeness, and compliance with business rules and requirements.
+
+# Data Architecture
+The data architecture encompasses:
+- Mapping the data landscape within Teradata Vantage, including data sources, structures, and relationships.
+- Establishing data governance principles and practices to maintain data quality, consistency, and integrity throughout the extraction process.
+- Defining data environments and access controls to ensure appropriate levels of data security and privacy.
+
+# Security Architecture
+The security architecture addresses:
+- Overview of security measures and controls implemented to protect data during extraction from Teradata Vantage.
+- Functional requirements for cloud security, including encryption, access controls, and identity management.
+- Patterns and standards for securing data, applications, and infrastructure in compliance with industry regulations and best practices.
+
+# Service Management
+Service management considerations include:
+- Introduction of data extraction services and change management processes to facilitate adoption and mitigate risks associated with implementation.
+- Clarification of roles and responsibilities for stakeholders involved in managing, monitoring, and supporting the data extraction workflows.
+- Implementation of monitoring and logging mechanisms to track workflow performance, detect anomalies, and troubleshoot issues proactively.
+
+# Architecture Alignment & RAID
+Alignment to architecture principles ensures consistency with:
+- Risks associated with the data extraction project, such as potential data breaches, compliance violations, or operational disruptions.
+- Assumptions made during the design and implementation phases, including assumptions about data volumes, system dependencies, and stakeholder expectations.
+- Data-related issues, dependencies, and constraints that may impact the success of the data extraction project.
+- Architectural exceptions and mitigations to address deviations from established design principles, standards, or best practices.
+- Opportunities for optimization, innovation, or value creation through the implementation of the data extraction solution.
+
+# Expected Costs
+Key factors influencing the expected costs of the data extraction project include:
+- Infrastructure requirements, including compute, storage, and network resources provisioned on GCP.
+- Licensing fees for Teradata Vantage usage and any additional software or services required for integration and automation.
+- Estimate of total project costs based on resource utilization, implementation timelines, and potential cost-saving measures.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/.
+
 # Table of Contents
 1. [Version History](#version-history)
 2. [Glossary](#glossary)
