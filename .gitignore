@@ -4,3 +4,119 @@ src/config/config.ini
 src/compress_csv_handler.py
 .vscode
 src/scratchpad.py
+
+
+
+import requests
+import logging
+from sqlalchemy import create_engine, inspect
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+def get_request(url, params=None, headers=None):
+    """
+    Sends a GET request to the specified URL with optional parameters and headers.
+    
+    :param url: The URL to send the GET request to.
+    :param params: Dictionary of URL parameters to append to the URL.
+    :param headers: Dictionary of HTTP headers to send with the request.
+    :return: Response object from the GET request.
+    """
+    try:
+        logging.info(f'Sending GET request to {url} with params {params} and headers {headers}')
+        response = requests.get(url, params=params, headers=headers)
+        response.raise_for_status()
+        logging.info(f'Successfully received response: {response.status_code}')
+        return response
+    except requests.exceptions.HTTPError as http_err:
+        logging.error(f'HTTP error occurred: {http_err}')
+    except Exception as err:
+        logging.error(f'Other error occurred: {err}')
+    return None
+
+def post_request(url, data=None, json=None, headers=None):
+    """
+    Sends a POST request to the specified URL with optional data, JSON, and headers.
+    
+    :param url: The URL to send the POST request to.
+    :param data: Dictionary, list of tuples, bytes, or file-like object to send in the body of the request.
+    :param json: JSON data to send in the body of the request.
+    :param headers: Dictionary of HTTP headers to send with the request.
+    :return: Response object from the POST request.
+    """
+    try:
+        logging.info(f'Sending POST request to {url} with data {data}, json {json}, and headers {headers}')
+        response = requests.post(url, data=data, json=json, headers=headers)
+        response.raise_for_status()
+        logging.info(f'Successfully received response: {response.status_code}')
+        return response
+    except requests.exceptions.HTTPError as http_err:
+        logging.error(f'HTTP error occurred: {http_err}')
+    except Exception as err:
+        logging.error(f'Other error occurred: {err}')
+    return None
+
+def create_engine_teradata(username, password, host, database):
+    """
+    Creates a SQLAlchemy engine for Teradata.
+    
+    :param username: The username for the Teradata database.
+    :param password: The password for the Teradata database.
+    :param host: The host address of the Teradata database.
+    :param database: The database name to connect to.
+    :return: SQLAlchemy engine object.
+    """
+    connection_string = f'teradata://{username}:{password}@{host}/{database}'
+    engine = create_engine(connection_string)
+    logging.info(f'Successfully created Teradata engine for {database} at {host}')
+    return engine
+
+def get_foreign_keys(engine, table_name):
+    """
+    Retrieves foreign keys for the specified table using the provided Teradata engine.
+    
+    :param engine: SQLAlchemy engine object connected to the Teradata database.
+    :param table_name: Name of the table to get foreign keys for.
+    :return: List of foreign keys.
+    """
+    try:
+        inspector = inspect(engine)
+        foreign_keys = inspector.get_foreign_keys(table_name)
+        logging.info(f'Retrieved foreign keys for table {table_name}: {foreign_keys}')
+        return foreign_keys
+    except Exception as err:
+        logging.error(f'Error retrieving foreign keys for table {table_name}: {err}')
+        return []
+
+# Example GET request
+get_url = 'https://jsonplaceholder.typicode.com/posts'
+get_params = {'userId': 1}
+get_response = get_request(get_url, params=get_params)
+if get_response:
+    logging.info('GET request response:')
+    logging.info(get_response.json())
+
+# Example POST request
+post_url = 'https://jsonplaceholder.typicode.com/posts'
+post_data = {
+    'title': 'foo',
+    'body': 'bar',
+    'userId': 1
+}
+post_response = post_request(post_url, json=post_data)
+if post_response:
+    logging.info('POST request response:')
+    logging.info(post_response.json())
+
+# Example SQLAlchemy Teradata engine creation
+username = 'your_username'
+password = 'your_password'
+host = 'your_host'
+database = 'your_database'
+engine = create_engine_teradata(username, password, host, database)
+
+# Retrieve foreign keys for a specific table
+table_name = 'your_table'
+foreign_keys = get_foreign_keys(engine, table_name)
+logging.info(f'Foreign keys for table {table_name}: {foreign_keys}')
