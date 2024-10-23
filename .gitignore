@@ -1,303 +1,36 @@
-To monitor the impact of newly released objects in Teradata after a release, you'll want to focus on both performance metrics and system resource usage for those specific objects. A comprehensive query should cover areas like:
+WITH ProcSessions AS (
+    -- First, get all relevant Session IDs for the procedure execution
+    SELECT 
+        a.UserName,
+        a.SessionID,
+        a.QueryID,
+        a.StartTime,
+        a.FirstRespTime
+    FROM 
+        dbc.qrylogv a
+    INNER JOIN 
+        dbc.dbqlobjtbl sq ON a.QueryID = sq.QueryID
+    WHERE 
+        sq.ObjectTableName LIKE 'UPDATE_FACT_BILLINGUNALLOCATEDFUNDS'
+        AND a.StartTime > CURRENT_DATE - 7  -- Last 7 days
+)
 
-    Query performance: Monitor execution time, CPU, and I/O usage.
-    Resource utilization: CPU, disk I/O, and spool space consumption.
-    Lock contention: Check for any locking issues caused by the new release.
-    Impact on other jobs: Monitor if other jobs or queries are being delayed or affected by resource contention.
-
-Here's a multi-part query that combines these aspects:
-1. Query to Monitor Performance Metrics for New Objects:
-
-This query will track queries involving newly released objects, their CPU, I/O usage, and execution times:
-
-sql
-
--- Replace 'NewObjectName1', 'NewObjectName2' with the names of your newly released objects
-
+-- Now, get the resource usage and execution details for all queries executed within the same session
 SELECT 
-    AcctName,
-    QueryID, 
-    UserName,
-    StartTime,
-    FirstRespTime,
-    TotalIOCount, 
-    AMPCPUTime, 
-    SpoolUsage,
-    StatementType,
-    ErrorCode
+    a.UserName,
+    a.SessionID,
+    a.QueryID,
+    a.StartTime,
+    a.FirstRespTime,
+    a.AMPCPUTime AS CPUTime,
+    a.TotalIOCount AS IOCount,
+    a.SpoolUsage AS SpoolUsed,
+    (a.FirstRespTime - a.StartTime) AS QueryElapsedTime
 FROM 
-    DBC.QryLogV
+    dbc.qrylogv a
+JOIN 
+    ProcSessions ps ON a.SessionID = ps.SessionID  -- Join based on the captured session from the procedure
 WHERE 
-    (ObjectName LIKE '%NewObjectName1%' OR ObjectName LIKE '%NewObjectName2%')
-    AND StartTime > CURRENT_DATE - 1 -- Monitor from the last 24 hours
+    a.StartTime BETWEEN ps.StartTime AND ps.FirstRespTime  -- Get all steps within the procedure execution window
 ORDER BY 
-    StartTime DESC;
-
-2. Monitor System Resources Used by Jobs Involving New Objects:
-
-This query checks for system resource usage (CPU, I/O, and spool space) from queries involving newly released objects:
-
-sql
-
--- System resource usage for queries involving newly released objects
-SELECT 
-    Username, 
-    QueryID, 
-    SUM(AMPCPUTime) AS TotalCPU,
-    SUM(TotalIOCount) AS TotalIO, 
-    SUM(SpoolUsage) AS TotalSpool
-FROM 
-    DBC.QryLogV
-WHERE 
-    (ObjectName LIKE '%NewObjectName1%' OR ObjectName LIKE '%NewObjectName2%')
-    AND StartTime > CURRENT_DATE - 1 -- Last 24 hours
-GROUP BY 
-    Username, QueryID
-ORDER BY 
-    TotalCPU DESC;
-
-3. Monitor Lock Contention and Deadlocks:
-
-To check if any deadlocks or lock contention are occurring due to the new objects, use the following query:
-
-sql
-
--- Monitor for deadlocks and lock contention involving new objects
-SELECT 
-    LockingUser, 
-    LockingTable, 
-    LockMode, 
-    LockDuration, 
-    LockType, 
-    StartTime
-FROM 
-    DBC.LockLog
-WHERE 
-    (LockingTable LIKE '%NewObjectName1%' OR LockingTable LIKE '%NewObjectName2%')
-    AND StartTime > CURRENT_DATE - 1 -- Last 24 hours
-ORDER BY 
-    StartTime DESC;
-
-4. Monitor Impact on Other Jobs:
-
-You can monitor the performance of queries unrelated to the new objects to check if they’re being affected (higher CPU, I/O, or delays):
-
-sql
-
--- Monitor queries not involving the new objects to check for impact
-SELECT 
-    UserName, 
-    QueryID, 
-    AMPCPUTime, 
-    TotalIOCount, 
-    SpoolUsage, 
-    StartTime, 
-    FirstRespTime
-FROM 
-    DBC.QryLogV
-WHERE 
-    ObjectName NOT LIKE '%NewObjectName1%' 
-    AND ObjectName NOT LIKE '%NewObjectName2%'
-    AND StartTime > CURRENT_DATE - 1 -- Last 24 hours
-ORDER BY 
-    AMPCPUTime DESC;
-
-5. Monitor CPU and I/O Trends Over Time:
-
-To monitor how overall CPU and I/O are trending over time since the release:
-
-sql
-
--- CPU and I/O trends over time
-SELECT 
-    CAST(StartTime AS DATE) AS Date, 
-    SUM(AMPCPUTime) AS TotalCPUTime, 
-    SUM(TotalIOCount) AS TotalIO
-FROM 
-    DBC.QryLogV
-WHERE 
-    StartTime > CURRENT_DATE - 7 -- Last 7 days
-GROUP BY 
-    CAST(StartTime AS DATE)
-ORDER BY 
-    Date DESC;
-
-Summary of what to look for:
-
-    Execution time, CPU usage, I/O, and spool: Significant increases might indicate issues with the new release.
-    Locking/Deadlock issues: Look for any locking patterns or deadlocks on the new objects.
-    Overall system impact: If non-related queries are also experiencing resource delays or spikes in CPU/I/O usage, the release may be straining the system.
-
-With these queries, you can monitor the system's health and detect any performance degradation or issues introduced by the new release. Let me know if you'd like any adjustments!
-You said:
-Is there any queries i can run to monitor the stats
-ChatGPT said:
-ChatGPT
-
-Yes, in Teradata, you can monitor statistics to ensure that they are up-to-date, which is crucial for query performance, especially after a release. Proper statistics help the optimizer choose efficient query plans, and out-of-date or missing statistics can lead to performance degradation.
-
-Here are some queries that can help you monitor and analyze statistics on your newly released objects or across the system:
-1. Query to Check if Statistics are Missing:
-
-You can identify tables that have columns without statistics or where statistics haven't been collected yet. This is useful if you suspect missing stats after the release.
-
-sql
-
--- Check for missing statistics on newly released objects
-SELECT 
-    DatabaseName, 
-    TableName, 
-    ColumnName 
-FROM 
-    DBC.StatsV 
-WHERE 
-    (TableName LIKE '%NewObjectName1%' OR TableName LIKE '%NewObjectName2%')
-    AND StatCollection IS NULL -- No stats collected
-ORDER BY 
-    DatabaseName, 
-    TableName;
-
-2. Query to Identify Stale Statistics:
-
-Teradata allows you to check the "staleness" of statistics by identifying how much a table or column has changed since the last time statistics were collected.
-
-sql
-
--- Identify stale statistics on tables involving new objects
-SELECT 
-    DatabaseName, 
-    TableName, 
-    IndexNumber, 
-    StatCollection, 
-    LastCollectTimeStamp, 
-    NumRows, 
-    (NumRows - LastCollectRowCount) AS RowDifference, 
-    (NumRows - LastCollectRowCount) / NumRows * 100 AS PercentChange
-FROM 
-    DBC.StatsV
-WHERE 
-    (TableName LIKE '%NewObjectName1%' OR TableName LIKE '%NewObjectName2%')
-    AND LastCollectRowCount IS NOT NULL
-ORDER BY 
-    PercentChange DESC;
-
-3. Monitor System-Wide Stats Collection:
-
-This query allows you to check when the last statistics were collected on any objects in your database and to see trends in stats collection across tables.
-
-sql
-
--- Check the latest statistics collection for all tables
-SELECT 
-    DatabaseName, 
-    TableName, 
-    IndexNumber, 
-    LastCollectTimeStamp, 
-    LastCollectRowCount
-FROM 
-    DBC.StatsV
-WHERE 
-    LastCollectTimeStamp > CURRENT_DATE - 30 -- Stats collected in the last 30 days
-ORDER BY 
-    LastCollectTimeStamp DESC;
-
-4. Query to Detect Skew in Table Statistics:
-
-Skewed statistics can lead to inefficient query plans. This query helps you detect if any stats on columns of newly released objects are significantly skewed.
-
-sql
-
--- Check for skewed statistics in the new objects
-SELECT 
-    DatabaseName, 
-    TableName, 
-    IndexNumber, 
-    StatCollection, 
-    MaxValue, 
-    MinValue, 
-    (MaxValue - MinValue) AS SkewRange
-FROM 
-    DBC.StatsV
-WHERE 
-    (TableName LIKE '%NewObjectName1%' OR TableName LIKE '%NewObjectName2%')
-    AND MaxValue > MinValue
-ORDER BY 
-    SkewRange DESC;
-
-5. Query to Monitor Histogram and Stats on Specific Columns:
-
-For columns or indexes where you’ve recently released changes, you can monitor specific statistics histograms.
-
-sql
-
--- Check histogram statistics for specific columns or indexes in new objects
-SELECT 
-    DatabaseName, 
-    TableName, 
-    ColumnName, 
-    IndexNumber, 
-    HistogramCount, 
-    IntervalCount, 
-    MaxValue, 
-    MinValue
-FROM 
-    DBC.StatsV
-WHERE 
-    (TableName LIKE '%NewObjectName1%' OR TableName LIKE '%NewObjectName2%')
-ORDER BY 
-    DatabaseName, 
-    TableName, 
-    ColumnName;
-
-6. Check Statistics Usage by the Optimizer:
-
-You can also check how the optimizer is using statistics, especially if certain queries are underperforming after the release.
-
-sql
-
--- Monitor statistics usage by the optimizer
-SELECT 
-    QueryID, 
-    UserName, 
-    StartTime, 
-    StatUseType, 
-    StatType
-FROM 
-    DBC.DBQLogTbl
-WHERE 
-    StartTime > CURRENT_DATE - 1 -- Last 24 hours
-    AND (TableName LIKE '%NewObjectName1%' OR TableName LIKE '%NewObjectName2%')
-ORDER BY 
-    StartTime DESC;
-
-7. List of Tables with Collected or Missing Statistics:
-
-To get a full list of tables that either have collected or missing statistics, and to ensure all tables have stats collected:
-
-sql
-
--- List tables with or without collected statistics
-SELECT 
-    T.DatabaseName, 
-    T.TableName, 
-    CASE WHEN S.TableName IS NULL THEN 'Missing Stats' ELSE 'Stats Collected' END AS StatsStatus
-FROM 
-    DBC.TablesV AS T
-LEFT JOIN 
-    DBC.StatsV AS S
-    ON T.DatabaseName = S.DatabaseName
-    AND T.TableName = S.TableName
-WHERE 
-    T.TableKind = 'T' 
-    AND (T.TableName LIKE '%NewObjectName1%' OR T.TableName LIKE '%NewObjectName2%')
-ORDER BY 
-    StatsStatus;
-
-Summary:
-
-    Missing statistics: If stats are missing, you'll want to run COLLECT STATISTICS on the necessary columns or indexes.
-    Stale statistics: If the percentage of change in rows since the last collection is significant, consider refreshing statistics.
-    Skewed statistics: High skew can cause performance issues, and you may want to adjust the way statistics are collected (e.g., multicolumn or full-table stats).
-    Optimizer usage: Track whether the optimizer is using the correct stats, especially after significant schema changes.
-
-These queries help you monitor and diagnose potential performance issues related to statistics, ensuring that your release doesn’t inadvertently degrade query performance. Let me know if you need more specific queries!
+    a.StartTime;
