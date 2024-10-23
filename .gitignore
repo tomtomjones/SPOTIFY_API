@@ -1,122 +1,303 @@
-.venv
-python_workshop.egg-info
-src/config/config.ini
-src/compress_csv_handler.py
-.vscode
-src/scratchpad.py
+To monitor the impact of newly released objects in Teradata after a release, you'll want to focus on both performance metrics and system resource usage for those specific objects. A comprehensive query should cover areas like:
 
+    Query performance: Monitor execution time, CPU, and I/O usage.
+    Resource utilization: CPU, disk I/O, and spool space consumption.
+    Lock contention: Check for any locking issues caused by the new release.
+    Impact on other jobs: Monitor if other jobs or queries are being delayed or affected by resource contention.
 
+Here's a multi-part query that combines these aspects:
+1. Query to Monitor Performance Metrics for New Objects:
 
-import requests
-import logging
-from sqlalchemy import create_engine, inspect
+This query will track queries involving newly released objects, their CPU, I/O usage, and execution times:
 
-# Configure logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+sql
 
-def get_request(url, params=None, headers=None):
-    """
-    Sends a GET request to the specified URL with optional parameters and headers.
-    
-    :param url: The URL to send the GET request to.
-    :param params: Dictionary of URL parameters to append to the URL.
-    :param headers: Dictionary of HTTP headers to send with the request.
-    :return: Response object from the GET request.
-    """
-    try:
-        logging.info(f'Sending GET request to {url} with params {params} and headers {headers}')
-        response = requests.get(url, params=params, headers=headers)
-        response.raise_for_status()
-        logging.info(f'Successfully received response: {response.status_code}')
-        return response
-    except requests.exceptions.HTTPError as http_err:
-        logging.error(f'HTTP error occurred: {http_err}')
-    except Exception as err:
-        logging.error(f'Other error occurred: {err}')
-    return None
+-- Replace 'NewObjectName1', 'NewObjectName2' with the names of your newly released objects
 
-def post_request(url, data=None, json=None, headers=None):
-    """
-    Sends a POST request to the specified URL with optional data, JSON, and headers.
-    
-    :param url: The URL to send the POST request to.
-    :param data: Dictionary, list of tuples, bytes, or file-like object to send in the body of the request.
-    :param json: JSON data to send in the body of the request.
-    :param headers: Dictionary of HTTP headers to send with the request.
-    :return: Response object from the POST request.
-    """
-    try:
-        logging.info(f'Sending POST request to {url} with data {data}, json {json}, and headers {headers}')
-        response = requests.post(url, data=data, json=json, headers=headers)
-        response.raise_for_status()
-        logging.info(f'Successfully received response: {response.status_code}')
-        return response
-    except requests.exceptions.HTTPError as http_err:
-        logging.error(f'HTTP error occurred: {http_err}')
-    except Exception as err:
-        logging.error(f'Other error occurred: {err}')
-    return None
+SELECT 
+    AcctName,
+    QueryID, 
+    UserName,
+    StartTime,
+    FirstRespTime,
+    TotalIOCount, 
+    AMPCPUTime, 
+    SpoolUsage,
+    StatementType,
+    ErrorCode
+FROM 
+    DBC.QryLogV
+WHERE 
+    (ObjectName LIKE '%NewObjectName1%' OR ObjectName LIKE '%NewObjectName2%')
+    AND StartTime > CURRENT_DATE - 1 -- Monitor from the last 24 hours
+ORDER BY 
+    StartTime DESC;
 
-def create_engine_teradata(username, password, host, database):
-    """
-    Creates a SQLAlchemy engine for Teradata.
-    
-    :param username: The username for the Teradata database.
-    :param password: The password for the Teradata database.
-    :param host: The host address of the Teradata database.
-    :param database: The database name to connect to.
-    :return: SQLAlchemy engine object.
-    """
-    connection_string = f'teradata://{username}:{password}@{host}/{database}'
-    engine = create_engine(connection_string)
-    logging.info(f'Successfully created Teradata engine for {database} at {host}')
-    return engine
+2. Monitor System Resources Used by Jobs Involving New Objects:
 
-def get_foreign_keys(engine, table_name):
-    """
-    Retrieves foreign keys for the specified table using the provided Teradata engine.
-    
-    :param engine: SQLAlchemy engine object connected to the Teradata database.
-    :param table_name: Name of the table to get foreign keys for.
-    :return: List of foreign keys.
-    """
-    try:
-        inspector = inspect(engine)
-        foreign_keys = inspector.get_foreign_keys(table_name)
-        logging.info(f'Retrieved foreign keys for table {table_name}: {foreign_keys}')
-        return foreign_keys
-    except Exception as err:
-        logging.error(f'Error retrieving foreign keys for table {table_name}: {err}')
-        return []
+This query checks for system resource usage (CPU, I/O, and spool space) from queries involving newly released objects:
 
-# Example GET request
-get_url = 'https://jsonplaceholder.typicode.com/posts'
-get_params = {'userId': 1}
-get_response = get_request(get_url, params=get_params)
-if get_response:
-    logging.info('GET request response:')
-    logging.info(get_response.json())
+sql
 
-# Example POST request
-post_url = 'https://jsonplaceholder.typicode.com/posts'
-post_data = {
-    'title': 'foo',
-    'body': 'bar',
-    'userId': 1
-}
-post_response = post_request(post_url, json=post_data)
-if post_response:
-    logging.info('POST request response:')
-    logging.info(post_response.json())
+-- System resource usage for queries involving newly released objects
+SELECT 
+    Username, 
+    QueryID, 
+    SUM(AMPCPUTime) AS TotalCPU,
+    SUM(TotalIOCount) AS TotalIO, 
+    SUM(SpoolUsage) AS TotalSpool
+FROM 
+    DBC.QryLogV
+WHERE 
+    (ObjectName LIKE '%NewObjectName1%' OR ObjectName LIKE '%NewObjectName2%')
+    AND StartTime > CURRENT_DATE - 1 -- Last 24 hours
+GROUP BY 
+    Username, QueryID
+ORDER BY 
+    TotalCPU DESC;
 
-# Example SQLAlchemy Teradata engine creation
-username = 'your_username'
-password = 'your_password'
-host = 'your_host'
-database = 'your_database'
-engine = create_engine_teradata(username, password, host, database)
+3. Monitor Lock Contention and Deadlocks:
 
-# Retrieve foreign keys for a specific table
-table_name = 'your_table'
-foreign_keys = get_foreign_keys(engine, table_name)
-logging.info(f'Foreign keys for table {table_name}: {foreign_keys}')
+To check if any deadlocks or lock contention are occurring due to the new objects, use the following query:
+
+sql
+
+-- Monitor for deadlocks and lock contention involving new objects
+SELECT 
+    LockingUser, 
+    LockingTable, 
+    LockMode, 
+    LockDuration, 
+    LockType, 
+    StartTime
+FROM 
+    DBC.LockLog
+WHERE 
+    (LockingTable LIKE '%NewObjectName1%' OR LockingTable LIKE '%NewObjectName2%')
+    AND StartTime > CURRENT_DATE - 1 -- Last 24 hours
+ORDER BY 
+    StartTime DESC;
+
+4. Monitor Impact on Other Jobs:
+
+You can monitor the performance of queries unrelated to the new objects to check if they’re being affected (higher CPU, I/O, or delays):
+
+sql
+
+-- Monitor queries not involving the new objects to check for impact
+SELECT 
+    UserName, 
+    QueryID, 
+    AMPCPUTime, 
+    TotalIOCount, 
+    SpoolUsage, 
+    StartTime, 
+    FirstRespTime
+FROM 
+    DBC.QryLogV
+WHERE 
+    ObjectName NOT LIKE '%NewObjectName1%' 
+    AND ObjectName NOT LIKE '%NewObjectName2%'
+    AND StartTime > CURRENT_DATE - 1 -- Last 24 hours
+ORDER BY 
+    AMPCPUTime DESC;
+
+5. Monitor CPU and I/O Trends Over Time:
+
+To monitor how overall CPU and I/O are trending over time since the release:
+
+sql
+
+-- CPU and I/O trends over time
+SELECT 
+    CAST(StartTime AS DATE) AS Date, 
+    SUM(AMPCPUTime) AS TotalCPUTime, 
+    SUM(TotalIOCount) AS TotalIO
+FROM 
+    DBC.QryLogV
+WHERE 
+    StartTime > CURRENT_DATE - 7 -- Last 7 days
+GROUP BY 
+    CAST(StartTime AS DATE)
+ORDER BY 
+    Date DESC;
+
+Summary of what to look for:
+
+    Execution time, CPU usage, I/O, and spool: Significant increases might indicate issues with the new release.
+    Locking/Deadlock issues: Look for any locking patterns or deadlocks on the new objects.
+    Overall system impact: If non-related queries are also experiencing resource delays or spikes in CPU/I/O usage, the release may be straining the system.
+
+With these queries, you can monitor the system's health and detect any performance degradation or issues introduced by the new release. Let me know if you'd like any adjustments!
+You said:
+Is there any queries i can run to monitor the stats
+ChatGPT said:
+ChatGPT
+
+Yes, in Teradata, you can monitor statistics to ensure that they are up-to-date, which is crucial for query performance, especially after a release. Proper statistics help the optimizer choose efficient query plans, and out-of-date or missing statistics can lead to performance degradation.
+
+Here are some queries that can help you monitor and analyze statistics on your newly released objects or across the system:
+1. Query to Check if Statistics are Missing:
+
+You can identify tables that have columns without statistics or where statistics haven't been collected yet. This is useful if you suspect missing stats after the release.
+
+sql
+
+-- Check for missing statistics on newly released objects
+SELECT 
+    DatabaseName, 
+    TableName, 
+    ColumnName 
+FROM 
+    DBC.StatsV 
+WHERE 
+    (TableName LIKE '%NewObjectName1%' OR TableName LIKE '%NewObjectName2%')
+    AND StatCollection IS NULL -- No stats collected
+ORDER BY 
+    DatabaseName, 
+    TableName;
+
+2. Query to Identify Stale Statistics:
+
+Teradata allows you to check the "staleness" of statistics by identifying how much a table or column has changed since the last time statistics were collected.
+
+sql
+
+-- Identify stale statistics on tables involving new objects
+SELECT 
+    DatabaseName, 
+    TableName, 
+    IndexNumber, 
+    StatCollection, 
+    LastCollectTimeStamp, 
+    NumRows, 
+    (NumRows - LastCollectRowCount) AS RowDifference, 
+    (NumRows - LastCollectRowCount) / NumRows * 100 AS PercentChange
+FROM 
+    DBC.StatsV
+WHERE 
+    (TableName LIKE '%NewObjectName1%' OR TableName LIKE '%NewObjectName2%')
+    AND LastCollectRowCount IS NOT NULL
+ORDER BY 
+    PercentChange DESC;
+
+3. Monitor System-Wide Stats Collection:
+
+This query allows you to check when the last statistics were collected on any objects in your database and to see trends in stats collection across tables.
+
+sql
+
+-- Check the latest statistics collection for all tables
+SELECT 
+    DatabaseName, 
+    TableName, 
+    IndexNumber, 
+    LastCollectTimeStamp, 
+    LastCollectRowCount
+FROM 
+    DBC.StatsV
+WHERE 
+    LastCollectTimeStamp > CURRENT_DATE - 30 -- Stats collected in the last 30 days
+ORDER BY 
+    LastCollectTimeStamp DESC;
+
+4. Query to Detect Skew in Table Statistics:
+
+Skewed statistics can lead to inefficient query plans. This query helps you detect if any stats on columns of newly released objects are significantly skewed.
+
+sql
+
+-- Check for skewed statistics in the new objects
+SELECT 
+    DatabaseName, 
+    TableName, 
+    IndexNumber, 
+    StatCollection, 
+    MaxValue, 
+    MinValue, 
+    (MaxValue - MinValue) AS SkewRange
+FROM 
+    DBC.StatsV
+WHERE 
+    (TableName LIKE '%NewObjectName1%' OR TableName LIKE '%NewObjectName2%')
+    AND MaxValue > MinValue
+ORDER BY 
+    SkewRange DESC;
+
+5. Query to Monitor Histogram and Stats on Specific Columns:
+
+For columns or indexes where you’ve recently released changes, you can monitor specific statistics histograms.
+
+sql
+
+-- Check histogram statistics for specific columns or indexes in new objects
+SELECT 
+    DatabaseName, 
+    TableName, 
+    ColumnName, 
+    IndexNumber, 
+    HistogramCount, 
+    IntervalCount, 
+    MaxValue, 
+    MinValue
+FROM 
+    DBC.StatsV
+WHERE 
+    (TableName LIKE '%NewObjectName1%' OR TableName LIKE '%NewObjectName2%')
+ORDER BY 
+    DatabaseName, 
+    TableName, 
+    ColumnName;
+
+6. Check Statistics Usage by the Optimizer:
+
+You can also check how the optimizer is using statistics, especially if certain queries are underperforming after the release.
+
+sql
+
+-- Monitor statistics usage by the optimizer
+SELECT 
+    QueryID, 
+    UserName, 
+    StartTime, 
+    StatUseType, 
+    StatType
+FROM 
+    DBC.DBQLogTbl
+WHERE 
+    StartTime > CURRENT_DATE - 1 -- Last 24 hours
+    AND (TableName LIKE '%NewObjectName1%' OR TableName LIKE '%NewObjectName2%')
+ORDER BY 
+    StartTime DESC;
+
+7. List of Tables with Collected or Missing Statistics:
+
+To get a full list of tables that either have collected or missing statistics, and to ensure all tables have stats collected:
+
+sql
+
+-- List tables with or without collected statistics
+SELECT 
+    T.DatabaseName, 
+    T.TableName, 
+    CASE WHEN S.TableName IS NULL THEN 'Missing Stats' ELSE 'Stats Collected' END AS StatsStatus
+FROM 
+    DBC.TablesV AS T
+LEFT JOIN 
+    DBC.StatsV AS S
+    ON T.DatabaseName = S.DatabaseName
+    AND T.TableName = S.TableName
+WHERE 
+    T.TableKind = 'T' 
+    AND (T.TableName LIKE '%NewObjectName1%' OR T.TableName LIKE '%NewObjectName2%')
+ORDER BY 
+    StatsStatus;
+
+Summary:
+
+    Missing statistics: If stats are missing, you'll want to run COLLECT STATISTICS on the necessary columns or indexes.
+    Stale statistics: If the percentage of change in rows since the last collection is significant, consider refreshing statistics.
+    Skewed statistics: High skew can cause performance issues, and you may want to adjust the way statistics are collected (e.g., multicolumn or full-table stats).
+    Optimizer usage: Track whether the optimizer is using the correct stats, especially after significant schema changes.
+
+These queries help you monitor and diagnose potential performance issues related to statistics, ensuring that your release doesn’t inadvertently degrade query performance. Let me know if you need more specific queries!
