@@ -34,3 +34,30 @@ WHERE
     a.StartTime BETWEEN ps.StartTime AND ps.FirstRespTime  -- Get all steps within the procedure execution window
 ORDER BY 
     a.StartTime;
+
+
+
+
+
+SELECT 
+    a.UserName,
+    a.QueryID,
+    SUM(a.AMPCPUTime) AS TotalCPU,  -- Sum of CPU usage
+    SUM(a.TotalIOCount) AS TotalIO, -- Sum of I/O usage
+    SUM(a.SpoolUsage) AS TotalSpool, -- Sum of spool space usage
+    MIN(a.StartTime) AS StartTime,   -- Query start time
+    MAX(a.FirstRespTime) AS FirstRespTime,  -- First response time
+    (MAX(a.FirstRespTime) - MIN(a.StartTime)) AS TotalElapsedTime -- Time taken by the procedure
+FROM 
+    dbc.qrylogv a
+INNER JOIN 
+    dbc.qrylogsqv b ON a.QueryID = b.QueryID
+INNER JOIN 
+    dbc.dbqlobjtbl sq ON a.QueryID = sq.QueryID
+WHERE 
+    sq.ObjectTableName LIKE 'UPDATE_FACT_BILLINGUNALLOCATEDFUNDS'  -- Specify the procedure
+    AND a.StartTime > CURRENT_DATE - 7  -- Restrict to the last 7 days
+GROUP BY 
+    a.UserName, a.QueryID
+ORDER BY 
+    TotalCPU DESC;
